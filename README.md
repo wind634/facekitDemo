@@ -15,4 +15,4 @@
 
     2. dependencies新增配置
         ```compile(name: 'facekit_v1.6.1', ext: 'aar')```
-## 三. 示例代码见MainActivity.java
+## 三. 先调用faceKit.setAuth()设置账号,具体见示例代码MainActivity.java
