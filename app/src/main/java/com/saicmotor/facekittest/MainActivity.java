@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         faceKit = new FaceKit(MainActivity.this);
         // 设置验证账号
-        faceKit.setAuth("ShangHai_Inner_Test_74543234", "T20_73452342344343");
+        faceKit.setAuth("", "");
         // 初始化模型
         long begin = System.currentTimeMillis();
         int ret = faceKit.initModel();
