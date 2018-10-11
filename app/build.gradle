@@ -24,6 +24,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        pickFirst 'lib/arm64-v8a/libopencv_java3.so'
+        pickFirst 'lib/armeabi-v7a/libopencv_java3.so'
+    }
 }
 
 dependencies {
@@ -34,6 +38,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile(name: 'facekit_v1.9', ext: 'aar')
+    implementation(name: 'auth-1.0.2', ext: 'aar')
+    implementation(name: 'comparator-1.0.2', ext: 'aar')
+    implementation(name: 'facekit_v2.7', ext: 'aar')
+    implementation(name: 'fakeFace-1.2.0', ext: 'aar')
+//    compile(name: 'facekit_v1.9', ext: 'aar')
 }
 
