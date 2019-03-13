@@ -11,7 +11,6 @@ import android.util.Log;
 import com.pixtalks.detect.DetectResult;
 import com.pixtalks.facekitsdk.FaceKit;
 import com.pixtalks.facekitsdk.PConfig;
-import com.pixtalks.facekitsdk.utils.FileUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -86,52 +85,10 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Score ", score + "");
             Log.e(PConfig.projectLogTag, "two image use time " + (System.currentTimeMillis() - begin));
 
-
-            // isLive是单张静默活体的。若启用了动作活体，可以去掉。
-            begin = System.currentTimeMillis();
             // 活体识别
-            boolean isLiveness = faceKit.isLive(bitmap, detectResults.get(0));
+            boolean isLiveness = faceKit.isLive(bitmap3);
             Log.e(PConfig.projectLogTag, "Image 1 is " + isLiveness + " Use time " + (System.currentTimeMillis() - begin));
 
-            begin = System.currentTimeMillis();
-            isLiveness = faceKit.isLive(bitmap2, detectResults2.get(0));
-            Log.e(PConfig.projectLogTag, "Image 2 is " + isLiveness + " Use time " + (System.currentTimeMillis() - begin));
-
-            begin = System.currentTimeMillis();
-            isLiveness = faceKit.isLive(bitmap3, detectResults2.get(0));
-            Log.e(PConfig.projectLogTag, "Image 3 is " + isLiveness + " Use time " + (System.currentTimeMillis() - begin));
-
-
-            // 动作活体
-            // 调用动作活体参考流程：
-            // 先通过faceKit.detectFace 检测人脸（因为每次动作活体验证过程中，会保存当前次的全部验证图片，如果第一张不先进行检测，可能会保存大量没必要的非人脸图片）
-            // 检测到人脸后才调用动作活体接口（参考说明1）并提示用户眨眼（眨眼过程中头部不要大幅度晃动）
-            // 送去faceKit.addImage的图片不需要先调用faceKit.detectFace接口进行人脸检测。可以调用当faceKit.addImage内部会根据需要自动进行人脸检测。
-
-            // 说明1
-            // 眨眼动作活体使用流程（先保证faceKit初始化成功）：
-            // 1 调用faceKit.beginActionDetect（每次开始一次活体动作验证，都需要调用一次）
-            // 2 连续调用faceKit.addImage 直至返回 PConfig.okCode 或业务逻辑端控制一次验证传递的最大帧数
-            // 3 当faceKit.addImage 返回 PConfig.okCode后，可以调用当faceKit.getDailyImage 获取活体验证通过的图片
-
-            // 每次开始动作活体验证都要调用
-            faceKit.beginActionDetect();
-            for (int i = 0; i< 30; ++i) {
-                StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append("/storage/emulated/0/pixtalks_facekit_3/frame/ff_" + i + ".jpg");
-                Bitmap frame = BitmapFactory.decodeFile(stringBuffer.toString(), options);
-                ret = faceKit.addImage(frame);
-                if (PConfig.keepAddImage == ret) {
-                    continue;
-                }
-
-                if (ret == PConfig.okCode) {
-                    Log.e(PConfig.projectLogTag, "Action pass");
-                    byte[] selectImg = faceKit.getDailyImage();
-                    FileUtils.saveFile(selectImg, "/storage/emulated/0/pixtalks_facekit_3/select_frame.jpg");
-                    flushFileDisplay("/storage/emulated/0/pixtalks_facekit_3/select_frame.jpg");
-                }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
