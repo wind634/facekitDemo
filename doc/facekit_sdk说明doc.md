@@ -10,12 +10,20 @@
                        dirs 'libs'
                    }
                }
+
+               packagingOptions {
+                       pickFirst 'lib/arm64-v8a/libopencv_java3.so'
+                       pickFirst 'lib/armeabi-v7a/libopencv_java3.so'
+                   }
      ```
 
   * b. dependencies新增配置
       ```
-        compile(name: 'facekit_v1.9', ext: 'aar')
-      ```
+            implementation(name: 'auth-1.0.2', ext: 'aar')
+            implementation(name: 'comparator-1.0.2', ext: 'aar')
+            implementation(name: 'facekit_v2.7', ext: 'aar')
+            implementation(name: 'fakeFace-1.2.0', ext: 'aar')
+
 
 #### 三. 使用前先调用faceKit.setAuth()设置账号,具体见示例代码MainActivity.java
 
@@ -106,6 +114,7 @@
      *  2.连续调用faceKit.addImage 直至返回 PConfig.okCode 或业务逻辑端控制一次验证传递的最大帧数
      *  3.当faceKit.addImage 返回 PConfig.okCode后，可以调用当faceKit.getDailyImage 获取活体验证通过的图片
 
-
+#### 12. 设置比对最大距离（距离越远，比对时间越长）1最小，3最大
+   * PConfig.detectInSizeLevel = 3;
 
 
