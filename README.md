@@ -104,12 +104,4 @@
    * 方法返回
         * 是或否
 
-#### 11. 眨眼活体检测接口
-   * 眨眼活体分三个接口。眨眼动作活体使用流程如下, 具体参考MainActivity代码（先保证faceKit初始化成功）：
-     *  1.调用faceKit.beginActionDetect（每次开始一次活体动作验证，都需要调用一次）
-     *  2.连续调用faceKit.addImage 直至返回 PConfig.okCode 或业务逻辑端控制一次验证传递的最大帧数
-     *  3.当faceKit.addImage 返回 PConfig.okCode后，可以调用当faceKit.getDailyImage 获取活体验证通过的图片
-
-
-
 
