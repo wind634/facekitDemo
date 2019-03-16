@@ -1,9 +1,7 @@
 package com.saicmotor.facekittest;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,7 +10,6 @@ import com.pixtalks.detect.DetectResult;
 import com.pixtalks.facekitsdk.FaceKit;
 import com.pixtalks.facekitsdk.PConfig;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
-
-    public void flushFileDisplay(String path){
-        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        intent.setData(Uri.fromFile(new File(path)));
-        this.sendBroadcast(intent);
     }
 
 }

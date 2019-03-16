@@ -15,7 +15,10 @@
 
   * b. dependencies新增配置
       ```
-        compile(name: 'facekit_v1.9', ext: 'aar')
+         implementation(name: 'auth-1.0.2', ext: 'aar')
+         implementation(name: 'comparator-1.0.2', ext: 'aar')
+         implementation(name: 'facekit_v2.8', ext: 'aar')
+         implementation(name: 'fakeFace-1.2.0', ext: 'aar')
       ```
 
 #### 三. 使用前先调用faceKit.setAuth()设置账号,具体见示例代码MainActivity.java
