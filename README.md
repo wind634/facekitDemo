@@ -98,9 +98,9 @@
 
 #### 10. 静态活体检测接口
    * 方法定义
-        * boolean isLive(Bitmap bitmap, DetectResult detectResult)
+        * boolean isLive(Bitmap bitmap)
    * 方法参数
-        * bitmap图片 以及 detectFace(Bitmap bitmap)提取的人脸特征点位置信息
+        * bitmap图片
    * 方法返回
         * 是或否
 
