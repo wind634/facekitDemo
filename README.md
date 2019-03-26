@@ -3,7 +3,7 @@
 
 ## 一.使用sdk步骤:
 #### 1. 加载jniLibs下so库
-#### 2. 加载 facekit_v1.9.aar
+#### 2. 加载aar库
   * a. gradle android下新增配置
      ```
                repositories {
